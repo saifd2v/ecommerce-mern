@@ -20,7 +20,7 @@ exports.register = async (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
-        }).status(200).json({ success: true, message: "Account created successfully" });
+        }).status(201).json({ success: true, message: "Account created successfully" });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ success: false, message: "Something went wrong" });

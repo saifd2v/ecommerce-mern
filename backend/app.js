@@ -6,6 +6,7 @@ const connectDB = require("./db/connectDB");
 require("dotenv").config({ quiet: true });
 
 const authRoute = require("./routes/authRoute");
+const productRoute = require("./routes/productRoute");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -26,3 +27,4 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 //
 app.use("/api/auth", authRoute);
+app.use("/api/product", productRoute)
