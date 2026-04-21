@@ -18,6 +18,7 @@ const registerValidator = (req, res, next) => {
             .email({ tlds: { allow: true } })
             .required()
             .messages({
+                'string.empty': 'Email is required',
                 'any.required': 'Email is required',
                 'string.email': 'Enter a valid email'
             }),
@@ -25,8 +26,17 @@ const registerValidator = (req, res, next) => {
             .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/)
             .required()
             .messages({
+                'string.empty': 'Password is required',
                 'any.required': 'Password is required',
                 'string.pattern.base': 'Password must be at least 8 characters long and include uppercase, lowercase letters, and a number',
+            }),
+        confirmPassword: Joi.string()
+            .valid(Joi.ref('password'))
+            .required()
+            .messages({
+                'string.empty': 'Confirm password is required',
+                'any.required': 'Confirm password is required',
+                'any.only': 'Passwords do not match',
             })
     });
 
