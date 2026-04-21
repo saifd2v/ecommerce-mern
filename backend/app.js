@@ -5,6 +5,8 @@ const rateLimiter = require("express-rate-limit");
 const connectDB = require("./db/connectDB");
 require("dotenv").config({ quiet: true });
 
+const authRoute = require("./routes/authRoute");
+
 const app = express();
 const PORT = process.env.PORT;
 const limiter = rateLimiter({
@@ -21,3 +23,6 @@ app.use(cookieParser());
 
 connectDB();
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+//
+app.use("/api/auth", authRoute);
