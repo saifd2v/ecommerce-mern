@@ -9,7 +9,7 @@ exports.addProduct = async (req, res) => {
         if (productExists) return res.status(400).json({ success: false, message: "Product already added" });
 
         const slug = productSlug(title);
-        const product = new Product({ title, description, price, stock, category, slug });
+        const product = new Product({ title, description, price, stock, category, slug, image: req.file ? req.file.filename : null });
         await product.save();
 
         res.status(201).json({ success: true, message: "Product created successfully" });
