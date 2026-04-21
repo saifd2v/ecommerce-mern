@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const rateLimiter = require("express-rate-limit");
+const connectDB = require("./db/connectDB");
 require("dotenv").config({ quiet: true });
 
 const app = express();
@@ -18,4 +19,5 @@ app.use(express.json());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cookieParser());
 
+connectDB();
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
