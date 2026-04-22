@@ -1,5 +1,7 @@
 const Product = require("../models/Product");
 const { productSlug } = require("../utils/index");
+const fs = require("fs/promises");
+const path = require("path");
 
 exports.addProduct = async (req, res) => {
     const { title, description, price, stock, category } = req.body || {};
@@ -25,6 +27,7 @@ exports.deleteProduct = async (req, res) => {
         const product = await Product.findById(id);
         if (!product) return res.status(404).json({ success: false, message: "Product not found" });
 
+        await fs.unlink(path.join(__dirname, "..", `uploads/${product.image}`))
         await Product.findByIdAndDelete(id);
         res.status(200).json({ success: true, message: "Product deleted successfully" });
     } catch (error) {

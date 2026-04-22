@@ -28,3 +28,4 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 //
 app.use("/api/auth", limiter, authRoute);
 app.use("/api/product", productRoute);
+app.disable("x-powered-by");
