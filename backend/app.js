@@ -7,6 +7,7 @@ require("dotenv").config({ quiet: true });
 
 const authRoute = require("./routes/authRoute");
 const productRoute = require("./routes/productRoute");
+const cartRoute = require("./routes/cartRoute");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -28,4 +29,5 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 //
 app.use("/api/auth", limiter, authRoute);
 app.use("/api/product", productRoute);
+app.use("/api/cart", cartRoute);
 app.disable("x-powered-by");
